@@ -143,6 +143,7 @@ public class SM4Utils
         String plainText ="ssda撒打飞机了ii&$$^##)*&6223';.,[]";
         SM4Utils sm4 = new SM4Utils();
         sm4.secretKey = "11HDESaAhiHHugDz";
+
         plainText.getBytes("UTF-8");
         System.out.println("ECB模式");
         String cipherText = sm4.encryptData_ECB(plainText);
@@ -163,5 +164,29 @@ public class SM4Utils
         System.out.println("明文: " + plainText);
         //PI4ke7HMoUMD/LOSHWX5/g==
 
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
+    public String getIv() {
+        return iv;
+    }
+
+    public void setIv(String iv) {
+        this.iv = iv;
+    }
+
+    public boolean isHexString() {
+        return hexString;
+    }
+
+    public void setHexString(boolean hexString) {
+        this.hexString = hexString;
     }
 }
