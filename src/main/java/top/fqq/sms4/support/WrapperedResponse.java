@@ -1,12 +1,3 @@
-/*
- * FileName: WrapperedResponse.java
- * Author:   guanshubang
- * Date:     2018/8/8 下午4:19
- * Description: //模块目的、功能描述
- * History: //修改记录
- * <author>      〈time>      <version>    <desc>
- * 修改人姓名    修改时间       版本号      描述
- */
 package top.fqq.sms4.support;
 
 import javax.servlet.ServletOutputStream;
@@ -22,7 +13,7 @@ import java.io.PrintWriter;
  * 〈自定义输出〉
  * 〈功能详细描述〉
  *
- * @author guanshubang
+ * @author fqq
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
@@ -38,9 +29,9 @@ public class WrapperedResponse extends HttpServletResponseWrapper {
         writer = new PrintWriter(new OutputStreamWriter(buffer,
                 this.getCharacterEncoding()));
     }
-
-    /** 重载父类获取outputstream的方法 */
     @Override
+    /** 重载父类获取outputstream的方法 */
+
     public ServletOutputStream getOutputStream(){
         return out;
     }

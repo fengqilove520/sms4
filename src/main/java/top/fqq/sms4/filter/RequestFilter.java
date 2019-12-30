@@ -1,5 +1,6 @@
 package top.fqq.sms4.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import top.fqq.sms4.support.WrapperedRequest;
 import top.fqq.sms4.support.WrapperedResponse;
 import top.fqq.sms4.utils.SM4Utils;
@@ -15,10 +16,11 @@ import java.io.IOException;
  * @Date: 2019/8/15 10:39
  * @Description:
  */
+@Slf4j
 public class RequestFilter implements Filter {
 
     @Override
-    public void init(FilterConfig var1) throws ServletException {
+    public void init(FilterConfig var1) {
 
     }
 
@@ -29,23 +31,22 @@ public class RequestFilter implements Filter {
         if ("true".equals(request.getHeader("ajax"))) {
             HttpServletResponse response = (HttpServletResponse) servletResponse;
             String requestBody = WebUtils.getRequestBody(request);
-            System.out.println("请求密文" + requestBody);
+            log.info("请求密文" + requestBody);
             SM4Utils sm4 = new SM4Utils();
             sm4.setSecretKey("11HDESaAhiHHugDz");
-//            sm4.setIv("UISwD9fW6cFh9SNS");
             requestBody.getBytes("UTF-8");
             requestBody = sm4.decryptData_ECB(requestBody);
-            System.out.println("请求明文" + requestBody);
+            log.info("请求明文" + requestBody);
             WrapperedResponse wrapResponse = new WrapperedResponse(response);
             WrapperedRequest wrapRequest = new WrapperedRequest(request, requestBody);
             filterChain.doFilter(wrapRequest, wrapResponse);
             byte[] data = wrapResponse.getResponseData();
             String dataRes = new String(data, "utf-8");
-            System.out.println("返回明文" + dataRes);
+            log.info("返回明文" + dataRes);
             // 加密返回报文
-            dataRes = sm4.encryptData_ECB(dataRes);
-            System.out.println("返回密文" + dataRes);
-            WebUtils.jsonResponse(dataRes, response);
+            String   dataResMw = sm4.encryptData_ECB(dataRes);
+            log.info("返回密文" + dataResMw);
+            WebUtils.jsonResponse(dataResMw, response);
         }else{
             filterChain.doFilter(servletRequest,servletResponse);
         }

@@ -1,12 +1,3 @@
-/*
- * FileName: WrapperedRequest.java
- * Author:   guanshubang
- * Date:     2018/8/8 下午2:42
- * Description: //模块目的、功能描述
- * History: //修改记录
- * <author>      〈time>      <version>    <desc>
- * 修改人姓名    修改时间       版本号      描述
- */
 package top.fqq.sms4.support;
 
 import javax.servlet.ReadListener;
@@ -21,7 +12,7 @@ import java.io.StringReader;
  * 〈自定义request〉
  * 〈功能详细描述〉
  *
- * @author guanshubang
+ * @author fqq
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
